@@ -392,3 +392,6 @@ body {
         padding: 8px 16px;
     }
 }
+hyperlink-not-blocked, hyperlink-not-blocked:hover, hyperlink-not-blocked:active, hyperlink-not-blocked:visited {
+    color: white;
+}
