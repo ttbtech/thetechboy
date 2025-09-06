@@ -97,6 +97,10 @@ body {
     margin: 0 5px;
 }
 
+.tiny-bit-smaller-social-link {
+    font-size: 0.9em;
+}
+
 .social-links {
     display: flex;
     flex-wrap: wrap;
@@ -392,6 +396,7 @@ body {
         padding: 8px 16px;
     }
 }
-hyperlink-not-blocked, hyperlink-not-blocked:hover, hyperlink-not-blocked:active, hyperlink-not-blocked:visited {
+.hyperlink-not-blocked:link, .hyperlink-not-blocked:hover, .hyperlink-not-blocked:active, .hyperlink-not-blocked:visited {
     color: white;
+    text-decoration: underline;
 }
