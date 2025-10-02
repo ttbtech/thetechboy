@@ -1,4 +1,3 @@
-<!--english file-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/styles/styles.css">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="loading-overlay">
@@ -25,27 +23,27 @@
             <span id="mango"></span>
         </div>
         <div class="social-links">
-            <a href="https://www.tiktok.com/@ttbtech" target="_blank">
-                <i class="fab fa-tiktok"></i>
-                <span>TikTok</span>
-            </a>
-            <a href="https://www.youtube.com/@ttbtechreal" target="_blank">
-                <i class="fab fa-youtube"></i>
-                <span>YouTube</span>
-            </a>
-            <a href="https://www.youtube.com/@ttbunrelated" target="_blank">
-                <i class="fab fa-youtube"></i>
-                <span>Unrelated YouTube</span>
-            </a>
-            <a href="mailto:ttb@thetechboy.net">
-                <i class="fas fa-envelope"></i>
-                <span>Email</span>
-            </a>
-            <a href="https://x.com/thetechboy_" target="_blank">
-                <i class="fab fa-twitter"></i>
-                <span>Twitter</span>
-            </a>
-        </div>
+    <a href="https://www.tiktok.com/@ttbtech" target="_blank">
+        <i class="fab fa-tiktok"></i>
+        <span>TikTok</span>
+    </a>
+    <a href="https://www.youtube.com/@ttbtechreal" target="_blank">
+        <i class="fab fa-youtube"></i>
+        <span>YouTube</span>
+    </a>
+    <a href="https://www.youtube.com/@ttbunrelated" target="_blank">
+        <i class="fab fa-youtube"></i>
+        <span>Unrelated YouTube</span>
+    </a>
+    <a href="mailto:ttb@thetechboy.net">
+        <i class="fas fa-envelope"></i>
+        <span>Email</span>
+    </a>
+    <a href="https://x.com/thetechboy_" target="_blank">
+        <i class="fab fa-twitter"></i>
+        <span>Twitter</span>
+    </a>
+</div>
     </div>
     <div class="footer">
         © TTB, 2025.
@@ -54,10 +52,11 @@
         const loadingOverlay = document.querySelector('.loading-overlay');
         const content = document.querySelector('.content');
         const cubeImage = document.querySelector('.cube');
-        const animatedElements = [cubeImage, document.querySelector('.ttb-text'), document.querySelector('.subtitle'), document.querySelector('.social-links')];
+        const ttbText = document.querySelector('.ttb-text');
+        const subtitle = document.querySelector('.subtitle');
+        const socialLinks = document.querySelector('.social-links');
         const footer = document.querySelector('.footer');
         
-        // deltarune not tomorrow 
         const deltaruneTomorrowMaybeProbablyNotButWeCanOnlyHope = [
             "ALL. HE HAD. TO DO. WAS TELL ME WHAT HIS LITTLE SECRET WAS. HIS SECRET TO BEING A BIG SHOT...",
             "Designed BY The Classics You've Come To Expect! (C)1997",
@@ -80,6 +79,27 @@
             "Friend Inside Me",
             "Kris Get The Banana"
         ];
+        // so wingdings is NOT on every device
+        function WingGasterTest() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            context.font = '12px Wingdings';
+            context.fillText('A', 0, 0);
+            const wing = context.getImageData(0, 0, canvas.width, canvas.height).data;
+            
+            const canvas2 = document.createElement('canvas');
+            const context2 = canvas2.getContext('2d');
+            context2.font = '12px serif';
+            context2.fillText('A', 0, 0);
+            const ding = context2.getImageData(0, 0, canvas2.width, canvas2.height).data;
+            
+            for (let i = 0; i < wing.length; i++) {
+                if (wing[i] !== ding[i]) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         function bigshot() {
             const randomIndex = Math.floor(Math.random() * deltaruneTomorrowMaybeProbablyNotButWeCanOnlyHope.length);
@@ -87,28 +107,41 @@
         }
 
         bigshot();
+
+        if (!WingGasterTest()) {
+            subtitle.classList.add('notwingingmyding');
+        }
+
+        const animations = [cubeImage, ttbText, subtitle, socialLinks];
         content.classList.add('blurred');
-        footer.style.animationPlayState = 'paused';
 
         function initializeAnimations() {
             loadingOverlay.classList.add('hidden');
             setTimeout(() => {
                 content.classList.remove('blurred');
-                animatedElements.forEach(el => el.style.animationPlayState = 'running');
+                animations.forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
                 footer.style.animationPlayState = 'running';
-                setTimeout(() => cubeImage.classList.add('shadow'), 1300);
+                setTimeout(() => {
+                    cubeImage.classList.add('shadow');
+                }, 1300);
             }, 500);
         }
 
         cubeImage.onload = initializeAnimations;
-        if (cubeImage.complete) initializeAnimations();
+        if (cubeImage.complete) {
+            initializeAnimations();
+        }
+        footer.style.animationPlayState = 'paused';
 
         document.addEventListener('keydown', function(event) {
             if (event.key === 'F1') {
-                event.preventDefault(); 
-                window.location.href = 'http://krisyoulittlespongeiknewyoudcomehereonasaturdaynightafterallyo.uwannabeabigshoteahahahahaabuthowhowcanyoubelisteninthedeepaby.ssofqueensmansionagreatdealiswaitingforalimitedtimeonlyaheaven.piercingworkoutreadybodydesignedbytheclassicsyouvecometoexpe.com'; 
+            event.preventDefault(); 
+            window.location.href = '/special'; 
             }
         });
+
     </script>
 </body>
 </html>
