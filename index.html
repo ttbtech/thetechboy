@@ -1,3 +1,4 @@
+<!--english file-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,10 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/styles/styles.css"> <!-- Changed to rel path, so if the domain somehow changes the CSS doesn't break -->
+    <link rel="stylesheet" href="/assets/styles/styles.css">
 </head>
 <body>
-    <div class="background-circle"></div>
     <div class="loading-overlay">
         <h1>Downloading assets...</h1>
         <p>If you're stuck on this screen, your browser is probably too old to view this site.</p>
@@ -24,27 +24,27 @@
             <span id="mango"></span>
         </div>
         <div class="social-links">
-    <a href="https://www.tiktok.com/@ttbtech" target="_blank">
-        <i class="fab fa-tiktok"></i>
-        <span>TikTok</span>
-    </a>
-    <a href="https://www.youtube.com/@ttbtechreal" target="_blank">
-        <i class="fab fa-youtube"></i>
-        <span>YouTube</span>
-    </a>
-    <a href="https://www.youtube.com/@ttbunrelated" target="_blank">
-        <i class="fab fa-youtube"></i>
-        <span>Unrelated YouTube</span>
-    </a>
-    <a href="mailto:ttb@thetechboy.net">
-        <i class="fas fa-envelope"></i>
-        <span>Email</span>
-    </a>
-    <a href="https://x.com/thetechboy_" target="_blank">
-        <i class="fab fa-twitter"></i>
-        <span>Twitter</span>
-    </a>
-</div>
+            <a href="https://www.tiktok.com/@ttbtech" target="_blank">
+                <i class="fab fa-tiktok"></i>
+                <span>TikTok</span>
+            </a>
+            <a href="https://www.youtube.com/@ttbtechreal" target="_blank">
+                <i class="fab fa-youtube"></i>
+                <span>YouTube</span>
+            </a>
+            <a href="https://www.youtube.com/@ttbunrelated" target="_blank">
+                <i class="fab fa-youtube"></i>
+                <span>Unrelated YouTube</span>
+            </a>
+            <a href="mailto:ttb@thetechboy.net">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
+            <a href="https://x.com/thetechboy_" target="_blank">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+            </a>
+        </div>
     </div>
     <div class="footer">
         © TTB, 2025.
@@ -53,11 +53,8 @@
         const loadingOverlay = document.querySelector('.loading-overlay');
         const content = document.querySelector('.content');
         const cubeImage = document.querySelector('.cube');
-        const ttbText = document.querySelector('.ttb-text');
-        const subtitle = document.querySelector('.subtitle');
-        const socialLinks = document.querySelector('.social-links');
+        const animatedElements = [cubeImage, document.querySelector('.ttb-text'), document.querySelector('.subtitle'), document.querySelector('.social-links')];
         const footer = document.querySelector('.footer');
-        const backgroundCircle = document.querySelector('.background-circle');
         
         // deltarune not tomorrow 
         const deltaruneTomorrowMaybeProbablyNotButWeCanOnlyHope = [
@@ -83,93 +80,34 @@
             "Kris Get The Banana"
         ];
 
-
         function bigshot() {
             const randomIndex = Math.floor(Math.random() * deltaruneTomorrowMaybeProbablyNotButWeCanOnlyHope.length);
             document.getElementById('mango').textContent = deltaruneTomorrowMaybeProbablyNotButWeCanOnlyHope[randomIndex];
         }
 
         bigshot();
-
-        const animations = [cubeImage, ttbText, subtitle, socialLinks];
         content.classList.add('blurred');
+        footer.style.animationPlayState = 'paused';
 
         function initializeAnimations() {
             loadingOverlay.classList.add('hidden');
             setTimeout(() => {
                 content.classList.remove('blurred');
-                animations.forEach(el => {
-                    el.style.animationPlayState = 'running';
-                });
+                animatedElements.forEach(el => el.style.animationPlayState = 'running');
                 footer.style.animationPlayState = 'running';
-                setTimeout(() => {
-                    cubeImage.classList.add('shadow');
-                    document.body.classList.add('show-background');
-                }, 1300);
+                setTimeout(() => cubeImage.classList.add('shadow'), 1300);
             }, 500);
         }
 
         cubeImage.onload = initializeAnimations;
-        if (cubeImage.complete) {
-            initializeAnimations();
-        }
-        footer.style.animationPlayState = 'paused';
-
-        const particleCount = 150;
-        const particleElements = [];
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            particle.style.left = Math.random() * window.innerWidth + 'px';
-            particle.style.top = Math.random() * window.innerHeight + 'px';
-            document.body.appendChild(particle);
-            particleElements.push({
-                element: particle,
-                x: parseFloat(particle.style.left),
-                y: parseFloat(particle.style.top),
-                speedX: (Math.random() - 0.5) * 0.1,
-                speedY: (Math.random() - 0.5) * 0.1
-            });
-        }
-
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateParticles() {
-            particleElements.forEach((particle) => {
-                particle.x += particle.speedX;
-                particle.y += particle.speedY;
-
-                if (particle.x > window.innerWidth) particle.x = 0;
-                if (particle.x < 0) particle.x = window.innerWidth;
-                if (particle.y > window.innerHeight) particle.y = 0;
-                if (particle.y < 0) particle.y = window.innerHeight;
-
-                const dx = (mouseX - window.innerWidth / 2) * 0.00005;
-                const dy = (mouseY - window.innerHeight / 2) * 0.00005;
-                particle.x -= dx;
-                particle.y -= dy;
-
-                particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
-            });
-            requestAnimationFrame(animateParticles);
-        }
-
-        animateParticles();
-
+        if (cubeImage.complete) initializeAnimations();
 
         document.addEventListener('keydown', function(event) {
             if (event.key === 'F1') {
-            event.preventDefault(); 
-            window.location.href = '/special'; 
+                event.preventDefault(); 
+                window.location.href = '/special'; 
             }
         });
-
     </script>
 </body>
 </html>
