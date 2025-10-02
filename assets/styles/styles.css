@@ -1,12 +1,12 @@
 body {
     margin: 0;
     min-height: 100vh;
+    overflow: hidden;
     font-family: 'Roboto', sans-serif;
     background-color: black;
     color: white;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 
 .content {
@@ -17,7 +17,7 @@ body {
     align-items: center;
     transition: filter 0.5s ease;
     padding: 20px;
-    position: relative;
+    box-sizing: border-box;
     z-index: 1;
 }
 
@@ -55,7 +55,6 @@ body {
 
 .ttb-text {
     font-size: 48px;
-    color: white;
     opacity: 0;
     animation: textFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     animation-delay: 0.3s;
@@ -73,7 +72,11 @@ body {
     filter: blur(5px);
     animation-play-state: paused;
     max-width: 600px;
-    font-family: Wingdings;
+    font-family: 'Wingdings', sans-serif;
+}
+
+.subtitle.notwingingmyding {
+    font-family: 'Roboto', sans-serif;
 }
 
 .social-links {
@@ -86,7 +89,6 @@ body {
     animation-delay: 1.9s;
     animation-play-state: paused;
     justify-content: center;
-    width: 100%;
 }
 
 .social-links a {
@@ -122,8 +124,7 @@ body {
 .footer {
     text-align: center;
     padding: 10px 20px;
-    font-size: 0.75em;
-    background-color: transparent;
+    font-size: 0.75em; 
     opacity: 0;
     animation: footerFadeIn 0.6s ease-in-out forwards;
     animation-delay: 2.6s;
@@ -132,7 +133,7 @@ body {
 @keyframes cubeMove {
     0% {
         opacity: 0;
-        transform: translateX(0) scale(1);
+        transform: translateX(0px) scale(1);
     }
     100% {
         opacity: 1;
@@ -147,7 +148,7 @@ body {
     }
     100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0px);
     }
 }
 
@@ -159,7 +160,7 @@ body {
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0px);
         filter: blur(0);
     }
 }
@@ -171,7 +172,7 @@ body {
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0px);
     }
 }
 
@@ -187,13 +188,17 @@ body {
 }
 
 @keyframes shadowPulse {
-    0%, 100% {
+    0% {
         opacity: 0.6;
         transform: scale(1);
     }
     50% {
         opacity: 1;
         transform: scale(1.2);
+    }
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
     }
 }
 
@@ -213,6 +218,7 @@ body {
     opacity: 1;
     transition: opacity 0.5s ease;
     padding: 20px;
+    box-sizing: border-box;
     text-align: center;
 }
 
@@ -242,6 +248,10 @@ body {
     .social-links {
         margin-top: 30px;
         gap: 15px;
+    }
+
+    .social-links a {
+        width: 150px;
     }
 
     .cube {
@@ -278,9 +288,14 @@ body {
     }
 
     .social-links a {
-        width: 120px;
-        padding: 8px 12px;
-        font-size: 0.9em;
+        width: 120px; 
+        padding: 8px 12px; 
+        font-size: 0.9em; 
+    }
+
+    .subtitle span {
+        display: block;
+        margin-bottom: 8px; 
     }
 
     .footer {
